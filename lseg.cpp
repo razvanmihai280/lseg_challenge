@@ -1,7 +1,11 @@
-﻿#include "datastockclass.h"
+﻿#include<iostream>
 #include<fstream>
-
-
+#include<string>
+#include<vector>
+#include<fstream>
+#include<random>
+#include <iomanip> 
+using namespace std;
 #if __cplusplus <= 201103L && !defined(__cpp_lib_filesystem)
 #include <experimental/filesystem>
 namespace fs = std::experimental::filesystem;
@@ -11,17 +15,6 @@ namespace fs = std::filesystem;
 #endif
 
 #pragma once
-
-#pragma once
-
-#include<iostream>
-#include<string>
-#include<vector>
-#include<fstream>
-#include<random>
-#include <iomanip> 
-using namespace std;
-
 
 int countCSVLines(const string& filename) {
     ifstream file(filename);
