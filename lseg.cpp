@@ -16,6 +16,16 @@ namespace fs = std::filesystem;
 
 #pragma once
 
+string getProjectRoot() {
+    fs::path currentFilePath(__FILE__);
+
+    fs::path projectRootPath = currentFilePath.parent_path().parent_path();
+
+    projectRootPath /= currentFilePath.parent_path().filename();
+
+    return projectRootPath.string();
+}
+
 int countCSVLines(const string& filename) {
     ifstream file(filename);
     if (!file.is_open()) {
@@ -253,6 +263,7 @@ string findCsvFile(const string& folderPath, const string& stockName) {
 
 
 int main() {
+
     int choice;
     string stockName;
     InfoStock is;
@@ -290,7 +301,7 @@ int main() {
                     cout << "Stock name entered: " << stockName << endl;
                     
                     {
-                        string filePath = findCsvFile("C:\\Users\\razva\\source\\repos\\lseg_challenge", stockName);
+                        string filePath = findCsvFile(getProjectRoot(), stockName);
                         if (!filePath.empty()) {
                            
                             string stockPath = stockName + ".csv";
@@ -386,7 +397,7 @@ int main() {
                     cout << "Numele actiunii introdus: " << stockName << endl;
                   
                     {
-                        string filePath = findCsvFile("C:\\Users\\razva\\source\\repos\\lseg_challenge", stockName);
+                        string filePath = findCsvFile(getProjectRoot(), stockName);
                         if (!filePath.empty()) {
                          
                             string stockPath = stockName + ".csv";
